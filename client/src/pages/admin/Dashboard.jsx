@@ -60,7 +60,7 @@ const Dashboard = () => {
                 interval={0} // Display all labels
               />
               <YAxis stroke="#6b7280" />
-              <Tooltip formatter={(value, name) => [`₹${value}`, name]} />
+              <Tooltip formatter={(value, name) => [`TND${value}`, name]} />
               <Line
                 type="monotone"
                 dataKey="price"

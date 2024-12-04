@@ -11,9 +11,9 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { useGetCourseDetailWithStatusQuery } from "@/features/api/purchaseApi";
 import { BadgeInfo, Lock, PlayCircle } from "lucide-react";
-import React from "react";
 import ReactPlayer from "react-player";
 import { useNavigate, useParams } from "react-router-dom";
+import image from '../../assets/price.png'
 
 const CourseDetail = () => {
   const params = useParams();
@@ -26,13 +26,13 @@ const CourseDetail = () => {
   if (isError) return <h>Failed to load course details</h>;
 
   const { course, purchased } = data;
-  console.log(purchased);
+  
 
   const handleContinueCourse = () => {
-    if(purchased){
-      navigate(`/course-progress/${courseId}`)
+    if (purchased) {
+      navigate(`/course-progress/${courseId}`);
     }
-  }
+  };
 
   return (
     <div className="space-y-5">
@@ -93,10 +93,18 @@ const CourseDetail = () => {
               <h1>Lecture title</h1>
               <Separator className="my-2" />
               <h1 className="text-lg md:text-xl font-semibold">Course Price</h1>
+              <div className="text-lg font-bold">
+                <span className="flex items-center">
+                  {course.coursePrice}
+                  <img src={image} alt="" className="w-9" />
+                </span>
+              </div>
             </CardContent>
             <CardFooter className="flex justify-center p-4">
               {purchased ? (
-                <Button onClick={handleContinueCourse} className="w-full">Continue Course</Button>
+                <Button onClick={handleContinueCourse} className="w-full">
+                  Continue Course
+                </Button>
               ) : (
                 <BuyCourseButton courseId={courseId} />
               )}

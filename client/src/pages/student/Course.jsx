@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import React from "react";
 import { Link } from "react-router-dom";
-
+import image from '../../assets/price.png'
 const Course = ({course}) => {
   return (
     <Link to={`/course-detail/${course._id}`}>
@@ -22,7 +22,7 @@ const Course = ({course}) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Avatar className="h-8 w-8">
-              <AvatarImage src={course.creator?.photoUrl || "https://github.com/shadcn.png"} alt="@shadcn" />
+              <AvatarImage src={course.creator?.photoUrl} alt="@shadcn" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <h1 className="font-medium text-sm">{course.creator?.name}</h1>
@@ -32,7 +32,7 @@ const Course = ({course}) => {
           </Badge>
         </div>
         <div className="text-lg font-bold">
-            <span>₹{course.coursePrice}</span>
+            <span className="flex items-center">{course.coursePrice}<img src={image} alt=""  className="w-9"/></span>
         </div>
       </CardContent>
     </Card>

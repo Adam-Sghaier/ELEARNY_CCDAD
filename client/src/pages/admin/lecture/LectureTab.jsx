@@ -25,8 +25,8 @@ const MEDIA_API = "http://localhost:8080/api/v1/media";
 
 const LectureTab = () => {
   const [lectureTitle, setLectureTitle] = useState("");
-  const [uploadVideInfo, setUploadVideoInfo] = useState(null);
-  const [isFree, setIsFree] = useState(false);
+  const [videoInfo, setUploadVideoInfo] = useState(null);
+  const [isPreviewFree, setIsFree] = useState(false);
   const [mediaProgress, setMediaProgress] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const params = useParams();
@@ -37,13 +37,13 @@ const LectureTab = () => {
 
   useEffect(() => {
     if (lecture) {
-      setLectureTitle(lecture.lectureTitle);
+      if(lecture.lectureTitle) setLectureTitle(lecture.lectureTitle);
       if(lecture.isPreviewFree) setIsFree(lecture.isPreviewFree);
       if(lecture.videoInfo) setUploadVideoInfo(lecture.videoInfo);
     }
   }, [lecture]);
 
-  const [edtiLecture, { data, isLoading, error, isSuccess }] =
+  const [editLecture, { data, isLoading, error, isSuccess }] =
     useEditLectureMutation();
   const [
     removeLecture,
@@ -82,12 +82,12 @@ const LectureTab = () => {
   };
 
   const editLectureHandler = async () => {
-    console.log({ lectureTitle, uploadVideInfo, isFree, courseId, lectureId });
+    console.log({ lectureTitle, videoInfo, isPreviewFree, courseId, lectureId });
 
-    await edtiLecture({
+    await editLecture({
       lectureTitle,
-      uploadVideInfo,
-      isFree,
+      videoInfo,
+      isPreviewFree,
       courseId,
       lectureId,
     });
@@ -162,8 +162,8 @@ const LectureTab = () => {
         </div>
         <div className="flex items-center space-x-2 my-5">
           <Switch
-            value={isFree}
-            checked={isFree}
+            value={isPreviewFree}
+            checked={isPreviewFree}
             onCheckedChange={() => {
               setIsFree((prev) => {
                 return !prev;

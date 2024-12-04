@@ -19,11 +19,12 @@ import {
   useUpdateUserMutation,
 } from "@/features/api/authApi";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [name, setName] = useState("");
   const [profilePhoto, setProfilePhoto] = useState("");
-
+  const nav = useNavigate();
   const { data, isLoading, refetch } = useLoadUserQuery();
   const [
     updateUser,
@@ -36,8 +37,6 @@ const Profile = () => {
     },
   ] = useUpdateUserMutation();
 
-  console.log(data);
-
   const onChangeHandler = (e) => {
     const file = e.target.files?.[0];
     if (file) setProfilePhoto(file);
@@ -48,6 +47,7 @@ const Profile = () => {
     formData.append("name", name);
     formData.append("profilePhoto", profilePhoto);
     await updateUser(formData);
+    nav(0);
   };
 
   useEffect(() => {
@@ -62,14 +62,12 @@ const Profile = () => {
     if (isError) {
       toast.error(error.message || "Failed to update profile");
     }
+    console.log(data);
   }, [error, updateUserData, isSuccess, isError]);
 
   if (isLoading) return <h1>Profile Loading...</h1>;
 
   const user = data && data.user;
-
-  console.log(user);
-  
 
   return (
     <div className="max-w-4xl mx-auto px-4 my-10">
@@ -77,10 +75,7 @@ const Profile = () => {
       <div className="flex flex-col md:flex-row items-center md:items-start gap-8 my-5">
         <div className="flex flex-col items-center">
           <Avatar className="h-24 w-24 md:h-32 md:w-32 mb-4">
-            <AvatarImage
-              src={user?.photoUrl || "https://github.com/shadcn.png"}
-              alt="@shadcn"
-            />
+            <AvatarImage src={user?.photoUrl} alt="@shadcn" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </div>
@@ -141,6 +136,7 @@ const Profile = () => {
                     type="file"
                     accept="image/*"
                     className="col-span-3"
+                    style={{ cursor: "pointer" }}
                   />
                 </div>
               </div>
