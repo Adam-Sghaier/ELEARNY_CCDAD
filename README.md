@@ -4,7 +4,7 @@ Merci à tous ceux qui ont contribué à ce projet !
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/DrNizar1"><img src="https://avatars.githubusercontent.com/DrNizar1" width="500px;" alt=""/><br /><sub><b>DrNizar1</b></sub></a></td>
+    <td align="center"><a href="https://github.com/DrNizar1"><img src="https://avatars.githubusercontent.com/DrNizar1" width="200px;" alt=""/><br /><sub><b>DrNizar1</b></sub></a></td>
     <td align="center"><a href="https://github.com/Adam-Sghaier"><img src="https://avatars.githubusercontent.com/Adam-Sghaier" width="100px;" alt=""/><br /><sub><b>Adam-Sghaier</b></sub></a></td>
     <td align="center"><a href="https://github.com/Aminejemmali"><img src="https://avatars.githubusercontent.com/Aminejemmali" width="100px;" alt=""/><br /><sub><b>Aminejemmali</b></sub></a></td>
     <td align="center"><a href="https://github.com/bluegoku007"><img src="https://avatars.githubusercontent.com/bluegoku007" width="100px;" alt=""/><br /><sub><b>bluegoku007</b></sub></a></td>
